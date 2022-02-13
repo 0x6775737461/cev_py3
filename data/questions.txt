@@ -1,2 +1,8 @@
 Em qual exercício você está?
 What exercise are you in?
+
+Há um exercício anterior não resolvido, abrindo os arquivos.
+There is a previous unresolved exercise, opening the file.
+
+Criando os diretório e arquivos modelo.
+Creating the directory and sample files.
