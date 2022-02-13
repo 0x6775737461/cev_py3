@@ -7,7 +7,7 @@ what_exercise(){
 	checks if there's any directory that has 
 	an exercise in development.
 	"
-	# $1 = $language
+
 	local data_path
 	local exerc_num
 
@@ -22,14 +22,42 @@ what_exercise(){
 		echo "[dev] create_dir()"
 	fi
 
-	echo "[dev] check_dirs()"
+	check_dirs 
+}
+
+check_dirs() {
+	: "
+	Checks if the user has solved some exercises,
+	this check is done in sequential order. 
+	"
+
+	local exerc_path
+	local exerc_dir
+	
+	#TODO: take the path dinamically
+	exerc_path='../'
+
+	#TODO: this atribution is usable only to [0-9], fix this
+	# to works in situations like ex([0-9]){3}
+	exerc_dir="ex00${exerc_num}"
+
+	for (( i=0; i<="$exerc_num"; i++)); do
+		# if the dir not exists
+		if [ ! -d "${exerc_path}${exerc_dir}" ]; then
+			#TODO: choose the language based on line number,
+			#looks hard coded thing; dev a func to do this
+			echo -e "$(sed -n "$(( language + 3 ))p" $data_path)"
+			echo '[dev] create_dir()'
+			return 0
+		fi
+	done
+
+	echo '[dev] attribute_file_names()'
+
+	return 0
 }
 
 foo='''
-check_dirs() {
-
-}
-
 create_dir(){
 	: "
 	...
