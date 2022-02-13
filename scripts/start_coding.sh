@@ -33,6 +33,7 @@ check_dirs() {
 
 	local exerc_path
 	local exerc_dir
+	local exerc_dir_path
 	
 	#TODO: take the path dinamically
 	exerc_path='../'
@@ -41,13 +42,17 @@ check_dirs() {
 	# to works in situations like ex([0-9]){3}
 	exerc_dir="ex00${exerc_num}"
 
+	exerc_dir_path="${exerc_path}${exerc_dir}"
+
 	for (( i=0; i<="$exerc_num"; i++)); do
 		# if the dir not exists
-		if [ ! -d "${exerc_path}${exerc_dir}" ]; then
+		if [ ! -d "$exerc_dir_path" ]; then
 			#TODO: choose the language based on line number,
 			#looks hard coded thing; dev a func to do this
 			echo -e "$(sed -n "$(( language + 3 ))p" $data_path)"
-			echo '[dev] create_dir()'
+
+			create_dir
+
 			return 0
 		fi
 	done
@@ -57,13 +62,21 @@ check_dirs() {
 	return 0
 }
 
-foo='''
 create_dir(){
 	: "
-	...
+	Creating the directory that includes the python files,
+	this creation is based on exercise number.
 	"
+
+	if ! ls "$exerc_dir_path" > /dev/null; then
+		#TODO: this actions depends the second check_dirs() todo.
+		mkdir "$exerc_dir_path"
+	fi
+
+	echo '[dev] attribute_file_names()'
 }
 
+foo='''
 attribute_file_names(){
 	: "
 	...
