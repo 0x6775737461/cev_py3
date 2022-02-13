@@ -70,7 +70,7 @@ create_dir(){
 	this creation is based on exercise number.
 	"
 
-	if ! ls "$exerc_dir_path" > /dev/null; then
+	if ! test -d "$exerc_dir_path"; then
 		#TODO: this actions depends the second check_dirs() todo.
 		mkdir "$exerc_dir_path"
 	fi
