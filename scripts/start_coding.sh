@@ -19,10 +19,12 @@ what_exercise(){
 		exerc_num
 	
 	if (( $exerc_num == 0 )); then
-		echo "[dev] create_dir()"
+		exerc_num=1
 	fi
 
 	check_dirs 
+
+	return 0
 }
 
 check_dirs() {
@@ -57,7 +59,7 @@ check_dirs() {
 		fi
 	done
 
-	echo '[dev] attribute_file_names()'
+	create_dir
 
 	return 0
 }
@@ -73,16 +75,34 @@ create_dir(){
 		mkdir "$exerc_dir_path"
 	fi
 
-	echo '[dev] attribute_file_names()'
+	attribute_file_names
+}
+
+attribute_file_names(){
+	: "
+	Take ../data/file_names.txt data and create the file
+	"
+
+	local file_names_path
+	local file_name
+	local file_to_create
+
+	# TODO: get this dinamically
+	file_names_path="../data/file_names.txt"
+
+	file_name=$(sed -n "${exerc_num}p" $file_names_path |
+		awk '{ print $3 }')
+
+	file_to_create="${exerc_dir_path}/$file_name"
+
+	if ! test -f "$file_to_create"; then
+		> "$file_to_create"
+	fi
+
+	return 0
 }
 
 foo='''
-attribute_file_names(){
-	: "
-	...
-	"
-}
-
 open_vim(){
 	: "
 	...
@@ -103,7 +123,7 @@ main(){
 		read language
 	done
 
-	what_exercise "$language"
+	what_exercise 
 }
 
 main "$@"
