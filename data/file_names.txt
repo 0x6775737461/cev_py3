@@ -1,0 +1,3 @@
+ex001 = hello_world.py
+ex002 = type_ur_name.py
+ex003 = sum_two_numbers.py
