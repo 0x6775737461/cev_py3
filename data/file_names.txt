@@ -2,3 +2,4 @@ ex001 = hello_world.py
 ex002 = type_ur_name.py
 ex003 = sum_two_numbers.py
 ex004 = data_info.py
+ex005 = antec_pred.py
