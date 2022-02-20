@@ -6,3 +6,4 @@ ex005 = antec_pred.py
 ex006 = double_triple_sqrt.py
 ex007 = average.py
 ex008 = data_converter.py
+ex009 = mul_table.py
