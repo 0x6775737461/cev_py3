@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# the below method is from: https://stackoverflow.com/a/4774063
+readonly SCRIPPATH=\
+"$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
 what_exercise(){
 	: "
 	Asks to the user, what exercise that he's
@@ -11,8 +15,7 @@ what_exercise(){
 	local data_path
 	local exerc_num
 
-	#TODO: take the path dinamically
-	data_path='../data/questions.txt'
+	data_path="${SCRIPPATH%/*}/data/questions.txt"
 
 	# asking to the user, based on your language
 	read -p "$(sed -n "${language}p" $data_path) [0, 1, 2, ...] " \
@@ -37,14 +40,13 @@ check_dirs() {
 	local exerc_dir
 	local exerc_dir_path
 	
-	#TODO: take the path dinamically
-	exerc_path='../'
+	exerc_path="${SCRIPPATH%/*}"
 
 	#TODO: this atribution is usable only to [0-9], fix this
 	# to works in situations like ex([0-9]){3}
 	exerc_dir="ex00${exerc_num}"
 
-	exerc_dir_path="${exerc_path}${exerc_dir}"
+	exerc_dir_path="${exerc_path}/${exerc_dir}"
 
 	for (( i=0; i<="$exerc_num"; i++)); do
 		# if the dir not exists
@@ -87,8 +89,7 @@ attribute_file_names(){
 	local file_name
 	local file_to_create
 
-	# TODO: get this dinamically
-	file_names_path="../data/file_names.txt"
+	file_names_path="${SCRIPPATH%/*}/data/file_names.txt"
 
 	file_name=$(sed -n "${exerc_num}p" $file_names_path |
 		awk '{ print $3 }')
