@@ -4,3 +4,4 @@ ex003 = sum_two_numbers.py
 ex004 = data_info.py
 ex005 = antec_pred.py
 ex006 = double_triple_sqrt.py
+ex007 = average.py
