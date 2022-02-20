@@ -18,7 +18,7 @@ what_exercise(){
 	read -p "$(sed -n "${language}p" $data_path) [0, 1, 2, ...] " \
 		exerc_num
 	
-	if (( $exerc_num == 0 )); then
+	if (( exerc_num == 0 )); then
 		exerc_num=1
 	fi
 
@@ -48,7 +48,7 @@ check_dirs() {
 
 	for (( i=0; i<="$exerc_num"; i++)); do
 		# if the dir not exists
-		if [ ! -d "$exerc_dir_path" ]; then
+		if ! test -d "$exerc_dir_path"; then
 			#TODO: choose the language based on line number,
 			#looks hard coded thing; dev a func to do this
 			echo -e "$(sed -n "$(( language + 3 ))p" $data_path)"
@@ -117,7 +117,7 @@ main(){
 	# asks to the user what your language
 	# 1 = pt-br
 	# 2 = en-us
-	while (( $language < 1 )) || (( $language > 2 ))
+	while (( language < 1 )) || (( language > 2 ))
 	do
 		echo -e "1. [pt-br]\n2. [en-us]\n: "
 		read language
