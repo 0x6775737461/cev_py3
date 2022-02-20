@@ -5,3 +5,4 @@ ex004 = data_info.py
 ex005 = antec_pred.py
 ex006 = double_triple_sqrt.py
 ex007 = average.py
+ex008 = data_converter.py
